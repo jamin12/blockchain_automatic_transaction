@@ -13,8 +13,8 @@ def get_yesterday_ma5(ticker):
 #변동성 돌파 전략에서 목표가
 def get_target_price(ticker):
     df = pyupbit.get_ohlcv(ticker)
+    print(df)
     yesterday = df.iloc[-2]
-    print(yesterday)
     today_open = yesterday['close']
     yesterday_high = yesterday['high']
     yesterday_low = yesterday['low']
