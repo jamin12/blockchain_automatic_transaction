@@ -3,8 +3,12 @@ import time
 import pyupbit
 import datetime
 
-#5일 이동평균선
+
+
 def get_yesterday_ma5(ticker):
+    """
+    5일 이동평균선
+    """
     df = pyupbit.get_ohlcv(ticker)
     close = df['close']
     ma = close.rolling(window=5).mean()
@@ -12,8 +16,11 @@ def get_yesterday_ma5(ticker):
 
 #변동성 돌파 전략에서 목표가
 def get_target_price(ticker):
+    """
+    목표가
+    """
     df = pyupbit.get_ohlcv(ticker)
-    print(df)
+
     yesterday = df.iloc[-2]
     today_open = yesterday['close']
     yesterday_high = yesterday['high']
@@ -24,21 +31,21 @@ def get_target_price(ticker):
 
 
 if __name__ == "__main__":
-    # now = datetime.datetime.now()
-    # mid = datetime.datetime(now.year, now.month, now.day, 9,00,00) + datetime.timedelta(1)
-    # target_price = get_target_price("KRW-META")
+    now = datetime.datetime.now()
+    mid = datetime.datetime(now.year, now.month, now.day, 9,00,00) + datetime.timedelta(1)
+    target_price = get_target_price("META")
 
-    # while True:
-    #     now = datetime.datetime.now()
-    #     if mid < now < mid + datetime.delta(seconds=10) : 
-    #         target_price = get_target_price("KRW-META")
-    #         mid = datetime.datetime(now.year, now.month, now.day, 9, 00, 00) + datetime.timedelta(1)
+    while True:
+        now = datetime.datetime.now()
+        if mid < now < mid + datetime.delta(seconds=10) : 
+            target_price = get_target_price("META")
+            mid = datetime.datetime(now.year, now.month, now.day, 9, 00, 00) + datetime.timedelta(1)
 
 
-    #     current_price = pyupbit.get_current_price("META")
-    #     print(current_price)
+        current_price = pyupbit.get_current_price("META")
+        print(current_price)
 
-    #     time.sleep(1)
-    print(get_target_price("META"))
+        time.sleep(1)
+
 
 

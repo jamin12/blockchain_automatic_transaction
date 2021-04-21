@@ -8,6 +8,5 @@ from app.common.consts import ACCESS,SCERET
 import datetime
 
 if __name__ == "__main__":
+    ...
 
-# (a=(b +=(((c++)-d)+((--e)/(-f)))))
-# a= b+= c++ -d + --e/-f
