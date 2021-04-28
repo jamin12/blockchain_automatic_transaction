@@ -63,8 +63,9 @@ def get_target_price(ticker):
 
 
 if __name__ == "__main__":
-    try:
-        while True:
+
+    while True:
+        try:
             now = datetime.datetime.now()
             start_time = get_start_time("META")
             end_time = start_time + datetime.timedelta(days=1)
@@ -76,11 +77,12 @@ if __name__ == "__main__":
                 if target_price < current_price and target_price < ma5:
                     krw = get_balance("KRW")
                     if krw > 5000:
-                        upbit.buy_market_order("KRW-META", krw * 0.9995)
+                        upbit.buy_market_order("META", krw * 0.9995)
             else:
                 meta = get_balance("META")
                 if meta > 50:
-                    upbit.sell_market_order("KRW-META", meta * 0.9995)
-    except Exception as e:
-        print(e)
-        time.sleep(1)
+                    upbit.sell_market_order("META", meta * 0.9995)
+            time.sleep(1)
+        except Exception as e:
+            print(e)
+            time.sleep(1)
